@@ -6,58 +6,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guilherme Bigode</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #conteudo {
+            background: #ff0000;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+        }
+
+        .area-botoes {
+            position: relative;
+            width: 260px;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            background: black;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #btnJulia {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .area-botoes {
+                width: 220px;
+            }
+
+            .btn {
+                width: 90px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
     <div id="conteudo">
-        <h2>Quem é mais malandro, a Julia ou o Gui</h2>
-        <div style="margin: auto;width: 170px;">
-          <a href="https://www.tiktok.com/@timbinha.o.gato/video/7636154479737441556?q=cafajeste%20chucro&t=1779758882688">  <button style="position: fixed;display: block;" class="btn" onclick="sim()">Gui</button> </a>
-            <button class="btn" onclick="desvia(this)" onmouseover="desvia(this)" style="position: absolute;">Julia</button>
+
+        <h2>Quem é mais malandro, a Julia ou o Gui?</h2>
+
+        <div class="area-botoes">
+
+            <a href="https://www.tiktok.com/@timbinha.o.gato/video/7636154479737441556?q=cafajeste%20chucro&t=1779758882688">
+                <button class="btn" onclick="sim()">Gui</button>
+            </a>
+
+            <button id="btnJulia" class="btn"
+                onmouseover="desvia(this)"
+                onclick="desvia(this)">
+                Julia
+            </button>
+
         </div>
+
     </div>
+
+    <script>
+        function sim() {
+            alert("Claro que o Guilherme é o malandro");
+        }
+
+        function desvia(btn) {
+
+            const margem = 20;
+
+            const maxX = window.innerWidth - btn.offsetWidth - margem;
+            const maxY = window.innerHeight - btn.offsetHeight - margem;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            btn.style.position = "fixed";
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+        }
+    </script>
+
 </body>
-<style>
-    #conteudo {
-        background: #ff0000;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        text-align: center;
-        font-family: sans-serif;
-    }
-
-    .btn {
-        background: black;
-        color: white;
-        border: none;
-        padding: 10px;
-        width: 80px;
-        border-radius: 5px;
-    }
-</style>
-
-<script>
-    function sim() {
-        alert("Claro que o Guilherme é o Malandro");
-        // redireciona para um URL após clicar no SIM
-    }
-
-    function desvia(btn) {
-        // btn declarado na função
-        btn.style.position = 'absolute';
-        btn.style.bottom = geraPosicao(10, 90);
-        btn.style.left = geraPosicao(10, 90);
-        console.log('opa, desviei...');
-    }
-
-    function geraPosicao(min, max) {
-        return (Math.random() * (max - min) + min) + "%";
-    }
-
-</script>
 
 </html>
